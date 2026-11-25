@@ -1,0 +1,20 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Gowtham and Tejaswini//Wedding//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:wedding-2026@gowtham-tejaswini
+DTSTAMP:20261117T000000Z
+DTSTART:20261213T141900Z
+DTEND:20261213T180000Z
+SUMMARY:Wedding Muhurtham · Gowtham & Tejaswini
+LOCATION:One Trenton Events & Retreat\, 11391 State Hwy 121\, Trenton\, TX 75490
+DESCRIPTION:Muhurtham at 8:19 AM. Kanyadaan\, Mangalsutra Dharana and Saptapadi. Dress code: Traditional Attire.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+TRIGGER:-P1D
+END:VALARM
+END:VEVENT
+END:VCALENDAR
