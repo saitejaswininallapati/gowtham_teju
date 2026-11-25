@@ -2317,7 +2317,7 @@ var used=false;window.drawScratch=function(){if(used)return;x.globalCompositeOpe
 function sc(e){if(!d)return;used=true;var q=c.getBoundingClientRect();x.globalCompositeOperation='destination-out';x.beginPath();x.arc(e.clientX-q.left,e.clientY-q.top,20,0,7);x.fill()}
 c.addEventListener('pointerdown',function(e){d=true;sc(e);used=true;c.style.transition='opacity .7s';c.style.opacity='0';c.style.pointerEvents='none'});c.addEventListener('pointermove',sc);window.addEventListener('pointerup',function(){d=false})})();
 /* RSVP: paste your Google Apps Script web-app URL here */
-var RSVP_URL='https://script.google.com/macros/s/AKfycbwVIJyxeGXhwA2Xpe1MlXvdL5WEpcgeK4cN0iZId3bRrGcLgefsFtFX0cfy6Z5yc8cCgQ/exec';
+var RSVP_URL='https://script.google.com/macros/s/AKfycbwcNfjMH7H74xtLTwTSgikiXhX6z_RDNkw3Q9OibDCLDrgKdV1X_0C8kjLtxxuDI0jg5A/exec';
 $('f').onsubmit=function(e){e.preventDefault();var f=this,b=$('sb');
 var acc=f.querySelector('input[name=attending]:checked');
 var declining=acc&&acc.value==='Declining';var cnt={Haldi:0,Mehendi:0,Muhurtham:0};if(!declining){cnt.Haldi=parseInt(f.elements.haldi_guests.value,10)||0;cnt.Mehendi=parseInt(f.elements.mehendi_guests.value,10)||0;cnt.Muhurtham=parseInt(f.elements.muhurtham_guests.value,10)||0}
@@ -2868,18 +2868,10 @@ try{if(localStorage.getItem('lang')==='te')set('te')}catch(e){}})();
    if(navigator.onLine===false){ferr.textContent=t('You seem to be offline. Please check your connection and try again.','మీరు ఆఫ్‌లైన్‌లో ఉన్నట్టున్నారు. కనెక్షన్ చూసి మళ్ళీ ప్రయత్నించండి.');ferr.hidden=false;return}
    sb.disabled=true;sb.classList.add('is-sending');sb.setAttribute('aria-busy','true');
    var ctl=window.AbortController?new AbortController():null,timer=setTimeout(function(){if(ctl)ctl.abort()},20000);
-   /* Read Google's reply so a failed save shows a real reason instead of a false "thank you". */
-   var fail=function(why){clearTimeout(timer);sb.disabled=false;sb.classList.remove('is-sending');sb.removeAttribute('aria-busy');
-     console.error('RSVP not saved:',why);
-     ferr.textContent=t('Sorry, your RSVP could not be saved. Please try again or contact Ajay at +1 (660) 620-8785.','క్షమించండి, మీ స్పందన సేవ్ కాలేదు. మళ్ళీ ప్రయత్నించండి లేదా అజయ్‌ని +1 (660) 620-8785 లో సంప్రదించండి.')+' ['+why+']';ferr.hidden=false};
-   fetch(window.RSVP_URL,{method:'POST',body:d,redirect:'follow',signal:ctl?ctl.signal:undefined})
-    .then(function(res){return res.text().then(function(txt){
-      var j=null;try{j=JSON.parse(txt)}catch(_){}
-      if(j&&j.ok){clearTimeout(timer);done(rec)}
-      else if(j)fail('script error: '+(j.error||'unknown'));
-      else fail('not the RSVP script (HTTP '+res.status+') - check deployment access is "Anyone"');
-    })})
-    .catch(function(err){fail('blocked: '+(err&&err.message||err)+' - deployment is probably not set to "Anyone", or this is an old version')});
+   fetch(window.RSVP_URL,{method:'POST',mode:'no-cors',body:d,signal:ctl?ctl.signal:undefined})
+    .then(function(){clearTimeout(timer);done(rec)})
+    .catch(function(){clearTimeout(timer);sb.disabled=false;sb.classList.remove('is-sending');sb.removeAttribute('aria-busy');
+     ferr.textContent=t('Could not send. Please check your connection and try again.','పంపడం విఫలమైంది. మీ ఇంటర్నెట్ కనెక్షన్ చూసి మళ్ళీ ప్రయత్నించండి.');ferr.hidden=false});
   };
  }
 
