@@ -2317,7 +2317,7 @@ var used=false;window.drawScratch=function(){if(used)return;x.globalCompositeOpe
 function sc(e){if(!d)return;used=true;var q=c.getBoundingClientRect();x.globalCompositeOperation='destination-out';x.beginPath();x.arc(e.clientX-q.left,e.clientY-q.top,20,0,7);x.fill()}
 c.addEventListener('pointerdown',function(e){d=true;sc(e);used=true;c.style.transition='opacity .7s';c.style.opacity='0';c.style.pointerEvents='none'});c.addEventListener('pointermove',sc);window.addEventListener('pointerup',function(){d=false})})();
 /* RSVP: paste your Google Apps Script web-app URL here */
-var RSVP_URL='https://script.google.com/macros/s/AKfycbwVIJyxeGXhwA2Xpe1MlXvdL5WEpcgeK4cN0iZId3bRrGcLgefsFtFX0cfy6Z5yc8cCgQ/exec';
+var RSVP_URL='https://script.google.com/macros/s/AKfycbyPej6CifhLpUwl7zXWrRLYZf-Nq3VgjTEOM9Pq0EG-bsqaeTawQS3sxdi0oUMr-Cx0zw/exec';
 $('f').onsubmit=function(e){e.preventDefault();var f=this,b=$('sb');
 var acc=f.querySelector('input[name=attending]:checked');
 var declining=acc&&acc.value==='Declining';var cnt={Haldi:0,Mehendi:0,Muhurtham:0};if(!declining){cnt.Haldi=parseInt(f.elements.haldi_guests.value,10)||0;cnt.Mehendi=parseInt(f.elements.mehendi_guests.value,10)||0;cnt.Muhurtham=parseInt(f.elements.muhurtham_guests.value,10)||0}
